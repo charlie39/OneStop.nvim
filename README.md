@@ -25,6 +25,7 @@ one may require in their project[s].
 ## Requirements
 
 * nvim +0.8
+* LSP client
 
 
 ## Problems:

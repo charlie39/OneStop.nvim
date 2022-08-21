@@ -1,17 +1,13 @@
 <div align="center">
-   
+
 # OneStop.nvim
 
 [![License](https://img.shields.io/badge/License-GPLv3-blue)](#license)
-
 [![issues - OneStop.nvim](https://img.shields.io/github/issues/charlie39/OneStop.nvim)](https://github.com/charlie39/OneStop.nvim/issues)
-
-
-
 
 </div>
 
-## Synopsis 
+## Synopsis
 
 
 This plugin is an attempt to provide an easier way to configure running various
@@ -48,7 +44,7 @@ Just install the plugin and do a basic configuration.
 * packer
 
 ```
-use { 'charlie39/onestop.nvim' }
+use { 'charlie39/OneStop.nvim' }
 ```
 this plugin depends on language server clients to find your project root as well
 as club your commands. So you need to configure the commands
@@ -57,7 +53,7 @@ as club your commands. So you need to configure the commands
 ## Configuration
 
 ```lua
-require'onestop'.setup{
+require'onestop'.setup {
 
     --[[ For running commands in an external terminal window, assign a table
     to this key.First item should be your terminal emulator and second item
@@ -126,7 +122,7 @@ git.
 
 ```sh
 git clone https://github.com/charlie39/OneShot.nvim
-~/.local/share/nvim/site/pack/packer/start/ [adjust according your plugin.path]
+~/.local/share/nvim/site/pack/packer/start/ [adjust according to your plugin.path]
 ```
 If you have problem installing with other plugin manager, feel free to open an issue.
 

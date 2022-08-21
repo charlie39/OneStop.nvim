@@ -12,7 +12,7 @@ M.defaults = {
     row = math.ceil((vim.api.nvim_get_option("lines") - 40) / 2 - 1),
     col = math.ceil((vim.api.nvim_get_option("columns") - 140) / 2),
     -- border = 'single',
-    border = { "⌜", "-", "⌝", "|", "⌟", "_", "⌞", "|" }
+    border = { "┏", "─", "┓", "│", "┛", "─", "┗", "│" }
   },
 
   maps = {

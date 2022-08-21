@@ -133,6 +133,17 @@ e.g:
 
 ```
 
+to change just the terminal:
+
+```lua
+
+--packer
+use { 'charlie39/OneStop.nvim , branch = 'main', config = require'onestop'.setup
+{ terminal = { 'alacritty','-e' }} }
+
+```
+
+
 ## Features
 
 * run [preconfigured] commands in a floating window with toggle support

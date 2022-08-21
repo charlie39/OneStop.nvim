@@ -54,10 +54,12 @@ Just install the plugin and do a basic configuration.
 * packer
 
 ```
-use { 'charlie39/OneStop.nvim' }
+use { 'charlie39/OneStop.nvim', branch = 'main' }
 ```
 this plugin depends on language server clients to find your project root as well
-as club your commands. So you need to configure the commands
+as club your commands. So you need to configure the commands based on under
+which language server client you would use them. The assigned commands would be
+available only under the given LSP client.
 
 
 ## Configuration

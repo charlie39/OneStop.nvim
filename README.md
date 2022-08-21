@@ -110,6 +110,27 @@ require'onestop'.setup {
 
 ```
 
+the setup function provides the command ```OSRunner```. This comamand by default
+launches the commands in the configured terminal [ The default is st, so if you
+don't have st installed you must set the terminal to one that is available].
+OSRunner takes three subcommands:
+
+- float = launches the command in a float term buffer
+- sp[lit] = launches the command in a split term buffer
+- vs[plit] = launches the command in vsplit term buffer
+- external = launches the command in the configured  external terminal
+
+you can map these to your custom key binds.
+e.g:
+
+```
+ vim.keymap.set('n','<leader>C', '<cmd>OSRunner external<cr>',{noremap = true})
+ vim.keymap.set('n','<leader>of', '<cmd>OSRunner float<cr>',{ noremap = true})
+ vim.keymap.set('n','<leader>ov', '<cmd>OSRunner vsplit<cr>',{ noremap = true})
+ vim.keymap.set('n','<leader>os', '<cmd>OSRunner split<cr>',{ noremap = true})
+
+```
+
 ## Features
 
 * run [preconfigured] commands in a floating window with toggle support

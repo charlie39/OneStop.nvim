@@ -24,7 +24,7 @@ one may require in their project[s].
 * LSP client
 
 
-## Problems:
+## Problems
 
 1. Do you find yourself configuring separate keymappings to run ```npm``` commands for ```node```
    projects ? ```maven``` commands for your ```maven``` projects? ```make``` commands for your

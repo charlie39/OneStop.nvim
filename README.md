@@ -39,6 +39,16 @@ one may require in their project[s].
 This plugin takes care of that.
 Just install the plugin and do a basic configuration.
 
+
+## Demos
+* Running command in external terminal:
+
+![external-terminal](https://user-images.githubusercontent.com/13074369/185806273-e5d56b4b-0ad2-4b99-83a6-1f03fb8deac0.gif)
+
+* Running command in floating window , split and vsplit term buffer:
+
+[![asciicast](https://asciinema.org/a/516276.svg)](https://asciinema.org/a/516276)
+
 ## Installation
 
 * packer

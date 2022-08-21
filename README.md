@@ -1,10 +1,26 @@
+<div align="center">
+   
 # OneStop.nvim
 
-This plugin is an attempt to provide an easier way to configure running various
-build and compile commands that you may require for your various project development.
-The goal is to  the _pain_ in having to configure each external commands that
-one may require in their project[s].
+[![License](https://img.shields.io/badge/License-GPLv3-blue)](#license)
 
+[![issues - OneStop.nvim](https://img.shields.io/github/issues/charlie39/OneStop.nvim)](https://github.com/charlie39/OneStop.nvim/issues)
+
+
+
+
+</div>
+
+## Synopsis 
+
+
+This plugin is an attempt to provide an easier way to configure running various
+
+build and compile commands that you may require for your various project development.
+
+The goal is to  the _pain_ in having to configure each external commands that
+
+one may require in their project[s].
 
 ## Requirements
 
@@ -118,3 +134,9 @@ If you have problem installing with other plugin manager, feel free to open an i
 maintaining a repository of build tool/package manager commands would be a challenge for
 me as i won't be able to test for all of them. Hence  commnunity
 contributions, PRs that add new commands are welcome.
+
+
+
+## License
+
+Released under [GPLv3](/LICENSE) by [@charlie39](https://github.com/charlie39).

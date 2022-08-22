@@ -16,7 +16,7 @@ M.defaults = {
   },
 
   maps = {
-    ['<M-I>'] = 'toggle_float',
+    ['<M-i>'] = 'toggle_float',
   },
 
   lscmds = {
@@ -93,7 +93,7 @@ function M.osrunner(opts)
               require 'onestop.jarfile'.run_jar_file(root_dir, terminal)
               return
             end
-            vim.notofy("[OneStop] set terminal to run jar files")
+            vim.notify("[OneStop] set terminal to run jar files")
             return
           end
 

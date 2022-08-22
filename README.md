@@ -189,7 +189,7 @@ The recommended plugin manager is packer as cited above or the manual way with
 git.
 
 ```sh
-git clone https://github.com/charlie39/OneShot.nvim
+git clone -b main https://github.com/charlie39/OneShot.nvim
 ~/.local/share/nvim/site/pack/packer/start/ [adjust according to your plugin.path]
 ```
 If you have problem installing with other plugin manager, feel free to open an issue.

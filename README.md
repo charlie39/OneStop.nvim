@@ -89,6 +89,8 @@ require'onestop'.setup {
             "mvn spring-boot:run",
             "mvn package",
             "java -jar",
+            "mvn dependency:resolve -Didentifier=javadoc",
+            "mvn dependency:sources",
         },
         rust_analyzer = {
             "cargo build",

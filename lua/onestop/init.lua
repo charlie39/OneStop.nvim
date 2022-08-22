@@ -66,7 +66,6 @@ function M.osrunner(opts)
     for _, client in pairs(clients) do
       local filetype = {}
       if type(client.config.filetypes) == 'table' then
-        -- vim.notify("inside client.config.filetypes")
         for _, client_filetype in pairs(client.config.filetypes) do
           if client_filetype == vim.bo.filetype then
             filetype = vim.bo.filetype
@@ -99,7 +98,9 @@ function M.osrunner(opts)
 
           local sp = vim.regex('sp\\(lit\\)\\?')
           local vs = vim.regex('vs\\(plit\\)\\?')
+          local tb = vim.regex('tab\\(new\\)\\?')
           local ext = vim.regex('ext\\(ertnal\\)\\?')
+
           local fl = vim.regex('fl\\(oat\\)\\?')
 
           local contain_File = vim.regex('\\[File\\]')
@@ -112,22 +113,16 @@ function M.osrunner(opts)
             end)
 
           end
-          -- vim.notify("opt.args passed: " .. opts.args)
           vim.notify("type(opts.args) : " .. type(opts.args))
           if sp:match_str(opts.args) then
-
             vim.fn.execute('split | term ' .. input .. file)
-
           elseif vs:match_str(opts.args) then
-
             vim.fn.execute('vsplit | term ' .. input .. file)
-
+          elseif tb:match_str(opts.args) then
+            vim.fn.execute('tabnew | term ' .. input .. file)
           elseif fl:match_str(opts.args) then
-
             require 'onestop.window'.float(input .. file, root_dir)
-
           elseif ext:match_str(opts.args) or opts.args == '' then
-
             if not vim.fn.executable(terminal[1]) then
               vim.notify("[OneStop] you need to set the terminal option to run in a terminal")
               return
@@ -180,7 +175,7 @@ function M.setup(opts)
   end
 
   vim.api.nvim_create_user_command("OSRunner", function(o) M.osrunner(o) end,
-    { nargs = '?', complete = function() return { 'vsplit', 'split', 'float', 'external' } end })
+    { nargs = '?', complete = function() return { 'vsplit', 'split', 'tabnew', 'float', 'external' } end })
 
 end
 

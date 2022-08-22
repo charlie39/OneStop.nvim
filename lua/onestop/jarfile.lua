@@ -1,14 +1,14 @@
 --if jar file
 local M = {}
+
 function M.run_jar_file(root_dir, terminal)
   local jars = {}
   jars = vim.split(vim.fn.glob(root_dir .. '/target/*.jar'), '\n')
-  if jars[1] == "" then
+  if next(jars) == nil then
     vim.ui.input({ prompt = "Enter jar file path: ", completion = "file" }, function(path)
-      jars = path
+      vim.fn.jobstart(terminal[1] .. ' ' .. terminal[2] .. ' sh -c "java -jar ' .. path .. ';read"',
+        { detach = true })
     end)
-    vim.fn.jobstart(terminal[1] .. ' ' .. terminal[2] .. ' sh -c "java -jar ' .. jars .. ';read"',
-      { detach = true })
   else
     vim.ui.select(jars, { prompt = "Select jar file: " }, function(jar)
       vim.fn.jobstart(terminal[1] .. ' ' .. terminal[2] .. ' sh -c "java -jar ' .. jar .. ';read"',
@@ -16,4 +16,5 @@ function M.run_jar_file(root_dir, terminal)
     end)
   end
 end
+
 return M

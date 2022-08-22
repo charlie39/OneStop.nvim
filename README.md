@@ -28,7 +28,7 @@ The goal is to streamline configuring and running external commands.
    ```go``` commands for ```golang``` projects? ( .. and so on )
 
 2. Do you wish for an easier way to configure to run your commands in a split terminal buffer ?
-   vsplit terminal buffer ? floating window ? or even in an external terminal emulator window?
+   vsplit terminal buffer ? tab term buffer ? floating window ? or even in an external terminal emulator window?
 
 ## One Stop solution
 
@@ -117,6 +117,7 @@ OSRunner takes three subcommands:
 - fl[oat] = launches the command in a float term buffer
 - sp[lit] = launches the command in a split term buffer
 - vs[plit] = launches the command in vsplit term buffer
+- tab[new] = launches the command in a new tab term buffer
 - ext[ernal] = launches the command in the configured  external terminal
 
 you can map these to your  custom key binds.
@@ -127,6 +128,7 @@ e.g:
  vim.keymap.set('n','<leader>of', '<cmd>OSRunner float<cr>',{ noremap = true})
  vim.keymap.set('n','<leader>ov', '<cmd>OSRunner vsplit<cr>',{ noremap = true})
  vim.keymap.set('n','<leader>os', '<cmd>OSRunner split<cr>',{ noremap = true})
+ vim.keymap.set('n','<leader>ot', '<cmd>OSRunner tab<cr>,{noremap = true})
 
 ```
 ### for commands that requires a file to run on, append ```[File]``` to it.
@@ -173,6 +175,7 @@ use { 'charlie39/OneStop.nvim , branch = 'main', config = require'onestop'.setup
 * run [preconfigured] commands in a floating window with toggle support
 * run [preconfigured] commands in a split terminal buffer
 * run [preconfigured] commands in a vsplit terminal buffer
+* run [preconfigured] commands in a new tab terminal buffer
 * run [preconfigured] commands in an external terminal window
 
 ## TODO

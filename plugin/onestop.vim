@@ -12,4 +12,4 @@ endif
 let g:loaded_onestop = 1
 
 lua require'onestop'.setup()
-nnoremap <leader>C <cmd>OSRunner<cr>
+" nnoremap <leader>C <cmd>OSRunner<cr>

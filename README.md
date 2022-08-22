@@ -11,16 +11,12 @@
 
 
 This plugin is an attempt to provide an easier way to configure running various
-
-build and compile commands that you may require for your various project development.
-
-The goal is to  the _pain_ in having to configure each external commands that
-
-one may require in their project[s].
+build,compile toolset and package manager commands that you may require for your various project development.
+The goal is to streamline configuring and running external commands.
 
 ## Requirements
 
-* nvim +0.8
+* nvim >=0.8
 * LSP client
 
 
@@ -113,16 +109,17 @@ require'onestop'.setup {
 ```
 
 the setup function provides the command ```OSRunner```. This comamand by default
-launches the commands in the configured terminal [ The default is st, so if you
+launches the commands in the configured terminal [ The default is st which is
+what i use, so if you
 don't have st installed you must set the terminal to one that is available].
 OSRunner takes three subcommands:
 
-- float = launches the command in a float term buffer
+- fl[oat] = launches the command in a float term buffer
 - sp[lit] = launches the command in a split term buffer
 - vs[plit] = launches the command in vsplit term buffer
-- external = launches the command in the configured  external terminal
+- ext[ernal] = launches the command in the configured  external terminal
 
-you can map these to your custom key binds.
+you can map these to your  custom key binds.
 e.g:
 
 ```
@@ -132,8 +129,21 @@ e.g:
  vim.keymap.set('n','<leader>os', '<cmd>OSRunner split<cr>',{ noremap = true})
 
 ```
+### for commands that requires a file to run on, append ```[File]``` to it.
 
-to change just the terminal:
+```
+...
+gopls = {
+    "go run [File]",
+    "go build [File]",
+    "go get [File]",
+}
+```
+
+this would prompt you to input the file.
+
+
+### to change just the terminal:
 
 ```lua
 
@@ -141,6 +151,20 @@ to change just the terminal:
 use { 'charlie39/OneStop.nvim , branch = 'main', config = require'onestop'.setup
 { terminal = { 'alacritty','-e' }} }
 
+```
+### add to that, if you also want to register some commands:
+
+```
+
+use { 'charlie39/OneStop.nvim , branch = 'main', config = require'onestop'.setup
+{
+    terminal = { 'alacritty','-e' },
+    lscmds = {
+        pyright = {
+            "python",
+            "pip install [File]",
+        }
+    }
 ```
 
 

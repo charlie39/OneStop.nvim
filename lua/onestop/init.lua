@@ -2,7 +2,7 @@ local M = {}
 
 M.defaults = {
 
-  terminal = { 'st','-e'},
+  terminal = { 'st', '-e' },
 
   layout = {
     style = 'minimal',
@@ -39,11 +39,24 @@ M.defaults = {
       "cargo run",
       "cargo build",
     },
+    gopls = {
+      "go build",
+      "go build [File]",
+      "go run [File]",
+      "go get [File]",
+      "go install",
+      "go clean",
+    },
     sumneko_lua = {
       "lua",
-    }
+    },
+    pyright = {
+      "python",
+      "python [File]",
+    },
   }
 }
+
 
 function M.osrunner(opts)
   local terminal = M.defaults.terminal
@@ -53,6 +66,7 @@ function M.osrunner(opts)
     for _, client in pairs(clients) do
       local filetype = {}
       if type(client.config.filetypes) == 'table' then
+        -- vim.notify("inside client.config.filetypes")
         for _, client_filetype in pairs(client.config.filetypes) do
           if client_filetype == vim.bo.filetype then
             filetype = vim.bo.filetype
@@ -69,6 +83,7 @@ function M.osrunner(opts)
       end
       if type(M.defaults.lscmds[client.config.name]) == 'table' and filetype ~= {} then
         local root_dir = client.config.root_dir
+        root_dir = vim.fn.isdirectory(root_dir) and root_dir or vim.fn.getcwd()
         local cmds = {}
         cmds = M.defaults.lscmds[client.config.name]
         vim.ui.select(cmds, { prompt = "Select command to run:" }, function(input)
@@ -81,25 +96,43 @@ function M.osrunner(opts)
             vim.notofy("[OneStop] set terminal to run jar files")
             return
           end
+
           local sp = vim.regex('sp\\(lit\\)\\?')
           local vs = vim.regex('vs\\(plit\\)\\?')
           local ext = vim.regex('ext\\(ertnal\\)\\?')
           local fl = vim.regex('fl\\(oat\\)\\?')
 
+          local contain_File = vim.regex('\\[File\\]')
+          local file = ""
+          if contain_File:match_str(input) then
+
+            vim.ui.input({ prompt = "File: ", completion = "file" }, function(inputFile)
+              file = inputFile
+              input = input:gsub('%[File%]', ' ')
+            end)
+
+          end
           -- vim.notify("opt.args passed: " .. opts.args)
           vim.notify("type(opts.args) : " .. type(opts.args))
           if sp:match_str(opts.args) then
-            vim.fn.execute('split | term ' .. input)
+
+            vim.fn.execute('split | term ' .. input .. file)
+
           elseif vs:match_str(opts.args) then
-            vim.fn.execute('vsplit | term ' .. input)
+
+            vim.fn.execute('vsplit | term ' .. input .. file)
+
           elseif fl:match_str(opts.args) then
-            require 'onestop.window'.float(input, root_dir)
+
+            require 'onestop.window'.float(input .. file, root_dir)
+
           elseif ext:match_str(opts.args) or opts.args == '' then
+
             if not vim.fn.executable(terminal[1]) then
               vim.notify("[OneStop] you need to set the terminal option to run in a terminal")
               return
             end
-            vim.fn.jobstart(terminal[1] .. ' ' .. terminal[2] .. ' sh -c "' .. input .. ' ;read"',
+            vim.fn.jobstart(terminal[1] .. ' ' .. terminal[2] .. ' sh -c "' .. input .. file .. ' ;read"',
               { detach = true })
           else
             vim.notify("[OneStop] Not a proper option, press <TAB> for the list of options")
